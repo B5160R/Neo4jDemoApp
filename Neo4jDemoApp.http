@@ -1,0 +1,6 @@
+@Neo4jDemoApp_HostAddress = http://localhost:5261
+
+GET {{Neo4jDemoApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

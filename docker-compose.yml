@@ -1,0 +1,29 @@
+services:
+
+  neo4j:
+    image: neo4j:5.6
+    container_name: neo4j-db
+    environment:
+      - NEO4J_AUTH=neo4j/graphdbsarec**l!
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4j-data:/data
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: neo4j-api
+    environment:
+      - Neo4j__Uri=bolt://neo4j-db:7687
+      - Neo4j__Username=neo4j
+      - Neo4j__Password=graphdbsarec**l!
+    ports:
+      - "5000:8080"
+    depends_on:
+      - neo4j
+
+volumes:
+  neo4j-data:
